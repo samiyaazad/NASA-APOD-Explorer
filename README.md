@@ -1,9 +1,11 @@
-NASA APOD Explorer :
+NASA APOD Explorer 
+
 Explore the universe from your browser! This small project lets you view NASA’s Astronomy Picture of the Day (APOD) for today or any past date.
 
 
 
-Features:
+Features
+
 🌌 View NASA APOD for today or any past date.
 📅 Date picker to select any day in history.
 🚀 Fade-in animation for images.
@@ -12,7 +14,8 @@ Features:
 
 
 
-How to Use :
+How to Use 
+
 Open index.html in your browser.
 Select a date using the date picker or leave it empty for today’s APOD.
 Click Load Image.
@@ -20,7 +23,8 @@ Enjoy the image or video along with its title, date, and explanation.
 
 
 
-File Structure :
+File Structure 
+
 nasa-apod-explorer/
 ├── index.html      # Main HTML file
 ├── style.css       # Styles and animations
@@ -28,16 +32,13 @@ nasa-apod-explorer/
 
 
 
-Live Demo:
+Live Demo
+
 If you deploy on GitHub Pages, you can share your project with anyone.
 Just go to Settings → Pages → Branch: main → Save → and open the link provided.
 
 
 
-Credits:
+Credits
+
 NASA APOD API – https://api.nasa.gov/
-
-
-If you want, I can also add a “future improvements” section listing your next upgrades: starry background, glowing buttons, previous/next APOD buttons, etc.—makes it look like a live, evolving project.
-
-Do you want me to do that?
