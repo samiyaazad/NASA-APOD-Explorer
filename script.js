@@ -22,26 +22,17 @@ getAPOD();
 
 // Switch tabs
 function switchTab(tab) {
-    document.getElementById("apodSection").classList.add("hidden");
-    document.getElementById("marsSection").classList.add("hidden");
-    document.getElementById("earthSection").classList.add("hidden");
-
+    ["apodSection", "marsSection", "earthSection"].forEach(id => document.getElementById(id).classList.add("hidden"));
     if (tab === "apod") document.getElementById("apodSection").classList.remove("hidden");
-    else if (tab === "mars") {
-        document.getElementById("marsSection").classList.remove("hidden");
-        getMarsPhotos();
-    } else if (tab === "earth") {
-        document.getElementById("earthSection").classList.remove("hidden");
-        getEarthEvents();
-    }
+    else if (tab === "mars") { document.getElementById("marsSection").classList.remove("hidden"); getMarsPhotos(); }
+    else if (tab === "earth") { document.getElementById("earthSection").classList.remove("hidden"); getEarthEvents(); }
 }
 
-// APOD Function
+// APOD
 async function getAPOD(isRandom = false) {
     if (isLoading) return;
     const status = document.getElementById("status");
     const loader = document.getElementById("loader");
-
     try {
         isLoading = true;
         loader.classList.remove("hidden");
@@ -49,7 +40,6 @@ async function getAPOD(isRandom = false) {
 
         const selectedDate = document.getElementById("datePicker").value;
         const today = new Date().toISOString().split("T")[0];
-
         if (selectedDate && selectedDate > today) throw new Error("Future dates not allowed.");
 
         let url = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
@@ -58,10 +48,8 @@ async function getAPOD(isRandom = false) {
 
         const res = await fetch(url);
         if (!res.ok) throw new Error("Network error. Try again.");
-
         const data = await res.json();
         renderAPOD(isRandom ? data[0] : data);
-
     } catch (err) { status.innerText = err.message; }
     finally { isLoading = false; loader.classList.add("hidden"); }
 }
@@ -71,7 +59,6 @@ function renderAPOD(data) {
     const title = document.getElementById("title");
     const date = document.getElementById("date");
     const explanation = document.getElementById("explanation");
-
     container.innerHTML = "";
     title.innerText = data.title;
     date.innerText = "DATE: " + data.date;
@@ -100,16 +87,13 @@ async function getMarsPhotos() {
     const status = document.getElementById("status");
     container.innerHTML = "";
     status.innerText = "Loading Mars photos...";
-
     try {
-        const earthDate = "2022-08-01"; // Known date with photos
+        const earthDate = "2022-08-01";
         const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${earthDate}&api_key=${API_KEY}`);
         if (!res.ok) throw new Error("Failed to load Mars photos.");
-
         const data = await res.json();
         const photos = data.photos.slice(0, 8);
         if (!photos.length) container.innerHTML = "<p>No Mars photos found.</p>";
-
         photos.forEach(p => {
             const img = document.createElement("img");
             img.src = p.img_src;
@@ -127,15 +111,12 @@ async function getEarthEvents() {
     const status = document.getElementById("status");
     container.innerHTML = "";
     status.innerText = "Loading Earth Events...";
-
     try {
         const res = await fetch("https://eonet.gsfc.nasa.gov/api/v3/events?status=open");
         if (!res.ok) throw new Error("Failed to load Earth events.");
         const data = await res.json();
         const events = data.events.slice(0, 12);
-
         if (!events.length) container.innerHTML = "<p>No events found.</p>";
-
         events.forEach(event => {
             const card = document.createElement("div");
             card.classList.add("event-card");
@@ -162,7 +143,6 @@ async function getEarthEvents() {
             card.appendChild(date);
             container.appendChild(card);
         });
-
         status.innerText = "";
     } catch (err) { status.innerText = err.message; }
 }
