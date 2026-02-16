@@ -1,34 +1,63 @@
 <!DOCTYPE html>
-<html>
-    
-    <head>
-        <title>NASA APOD Explorer</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    
-    <body>
-        <div class="stars"></div>
-        <h1> 🌌 NASA APOD EXPLORER</h1>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SpaceScope Pro 🛰️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Floating stars background -->
+    <div id="stars"></div>
+
+    <h1>🌌 SPACESCOPE PRO 🌠</h1>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button id="apodTab">APOD</button>
+        <button id="marsTab">Mars Rover</button>
+        <button id="earthTab">Earth Events</button>
+    </div>
+
+    <!-- APOD Section -->
+    <div id="apodSection">
         <div class="controls">
             <input type="date" id="datePicker">
-            <button id="loadBtn">Load Image</button>
+            <button id="loadBtn">Load</button>
+            <button id="todayBtn">Today</button>
+            <button id="randomBtn">Random</button>
         </div>
-
+        <div id="loader" class="hidden"></div>
+        <span id="status"></span>
         <div id="mediaContainer"></div>
-
         <div class="info">
-
             <h2 id="title"></h2>
             <p id="date"></p>
             <p id="explanation"></p>
-
         </div>
-        
-        <script src="script.js"></script>
+    </div>
 
-        <span id="status"></span>
+    <!-- Mars Rover Section -->
+    <div id="marsSection" class="hidden">
+        <h2>🚀 Mars Rover Photos</h2>
+        <p>Images captured by NASA's Curiosity Rover</p>
+        <div id="marsContainer"></div>
+    </div>
 
-    </body>
+    <!-- Earth Events Section -->
+    <div id="earthSection" class="hidden">
+        <h2>🌍 Earth Events (EONET)</h2>
+        <p>Current natural events tracked by NASA</p>
+        <div id="eventsContainer"></div>
+    </div>
 
- </html>
+    <footer>
+        <p>Built using NASA APIs || Multi-API Space Dashboard</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!--need to work on more in this project but it's getting my nerve now-->
+<!--why nothing is working at all-->
